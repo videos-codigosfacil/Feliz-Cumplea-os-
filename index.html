@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Una pequeña sorpresa 🎂</title>
+
+    <style>
+
+        /* =========================================
+           CONFIGURACIÓN GENERAL
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: #000;
+            font-family: Georgia, serif;
+        }
+
+
+        /* =========================================
+           ESCENA
+        ========================================= */
+
+        .escena {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 48%,
+                    #17120d 0%,
+                    #090705 35%,
+                    #020202 70%,
+                    #000000 100%
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* =========================================
+           LUZ DE LA VELA
+        ========================================= */
+
+        .luz-vela {
+            position: absolute;
+
+            left: 50%;
+            top: 48%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 520px;
+            height: 520px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,245,180,0.40) 0%,
+                    rgba(255,210,100,0.27) 15%,
+                    rgba(255,160,45,0.14) 35%,
+                    rgba(255,120,20,0.06) 52%,
+                    transparent 75%
+                );
+
+            filter: blur(12px);
+
+            opacity: 0;
+
+            z-index: 2;
+
+            pointer-events: none;
+
+            transition:
+                opacity 2s ease;
+
+            animation:
+                luzTemblando
+                1.8s
+                infinite
+                alternate
+                ease-in-out;
+        }
+
+
+        @keyframes luzTemblando {
+
+            0% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(0.94);
+
+                filter: blur(13px);
+            }
+
+            50% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.05);
+
+                filter: blur(16px);
+            }
+
+            100% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(0.98);
+
+                filter: blur(11px);
+            }
+        }
+
+
+        /* =========================================
+           PASTEL
+        ========================================= */
+
+        .pastel {
+            position: absolute;
+
+            left: 50%;
+            bottom: 23%;
+
+            transform:
+                translateX(-50%);
+
+            width: 300px;
+            height: 190px;
+
+            z-index: 3;
+
+            filter:
+                drop-shadow(
+                    0 20px 20px
+                    rgba(0,0,0,0.8)
+                );
+        }
+
+
+        /* =========================================
+           CAPA SUPERIOR
+        ========================================= */
+
+        .capa-superior {
+            position: absolute;
+
+            left: 15px;
+            bottom: 75px;
+
+            width: 270px;
+            height: 70px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #fff4d8 0%,
+                    #efd09d 45%,
+                    #b8753f 100%
+                );
+
+            border:
+                2px solid #f8dfb2;
+
+            border-radius:
+                18px 18px 12px 12px;
+
+            box-shadow:
+                inset 0 7px 10px
+                rgba(255,255,255,0.65),
+
+                inset 0 -12px 18px
+                rgba(80,40,10,0.30);
+        }
+
+
+        /* =========================================
+           RELLENO
+        ========================================= */
+
+        .relleno {
+            position: absolute;
+
+            left: 20px;
+            bottom: 62px;
+
+            width: 260px;
+            height: 18px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #ffffff,
+                    #f4e2c2
+                );
+
+            border-radius: 6px;
+
+            box-shadow:
+                0 2px 4px
+                rgba(0,0,0,0.30),
+
+                inset 0 3px 5px
+                rgba(255,255,255,0.9);
+        }
+
+
+        /* =========================================
+           CAPA INFERIOR
+        ========================================= */
+
+        .capa-inferior {
+            position: absolute;
+
+            left: 5px;
+            bottom: 10px;
+
+            width: 290px;
+            height: 65px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #e8bd82 0%,
+                    #c4864d 50%,
+                    #8b522b 100%
+                );
+
+            border:
+                2px solid #e8c18a;
+
+            border-radius:
+                12px 12px 18px 18px;
+
+            box-shadow:
+                inset 0 7px 10px
+                rgba(255,255,255,0.38),
+
+                inset 0 -13px 18px
+                rgba(60,30,10,0.40);
+        }
+
+
+        /* =========================================
+           CREMA
+        ========================================= */
+
+        .crema {
+            position: absolute;
+
+            width: 52px;
+            height: 22px;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    #ffffff 0%,
+                    #fffaf0 55%,
+                    #e6d3b9 100%
+                );
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 3px 5px
+                rgba(60,30,10,0.25),
+
+                inset 0 3px 5px
+                rgba(255,255,255,0.9);
+        }
+
+
+        .crema1 {
+            left: 25px;
+            top: -9px;
+        }
+
+        .crema2 {
+            left: 109px;
+            top: -9px;
+        }
+
+        .crema3 {
+            right: 25px;
+            top: -9px;
+        }
+
+        .crema4 {
+            left: 30px;
+            bottom: -8px;
+        }
+
+        .crema5 {
+            left: 119px;
+            bottom: -8px;
+        }
+
+        .crema6 {
+            right: 30px;
+            bottom: -8px;
+        }
+
+
+        /* =========================================
+           FRESAS
+        ========================================= */
+
+        .fresa {
+            position: absolute;
+
+            z-index: 10;
+
+            font-size: 23px;
+
+            filter:
+                drop-shadow(
+                    0 3px 3px
+                    rgba(0,0,0,0.55)
+                );
+        }
+
+        .fresa1 {
+            left: 52px;
+            top: -30px;
+        }
+
+        .fresa2 {
+            left: 123px;
+            top: -35px;
+        }
+
+        .fresa3 {
+            right: 52px;
+            top: -30px;
+        }
+
+
+        /* =========================================
+           BASE DEL PASTEL
+        ========================================= */
+
+        .base-pastel {
+            position: absolute;
+
+            left: 0;
+            bottom: -3px;
+
+            width: 300px;
+            height: 20px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #b87943,
+                    #6d3b1d
+                );
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 7px 14px
+                rgba(0,0,0,0.8);
+        }
+
+
+        /* =========================================
+           VELA
+        ========================================= */
+
+        .vela {
+            position: absolute;
+
+            left: 50%;
+            bottom: 135px;
+
+            transform:
+                translateX(-50%);
+
+            width: 20px;
+            height: 75px;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #fffdf4 0px,
+                    #fffdf4 6px,
+                    #e5b56b 6px,
+                    #e5b56b 10px
+                );
+
+            border:
+                1px solid
+                rgba(120,70,20,0.30);
+
+            border-radius: 6px;
+
+            box-shadow:
+                inset -4px 0 6px
+                rgba(100,50,10,0.20),
+
+                0 5px 10px
+                rgba(0,0,0,0.60);
+
+            z-index: 15;
+        }
+
+
+        /* =========================================
+           MECHA
+        ========================================= */
+
+        .mecha {
+            position: absolute;
+
+            left: 50%;
+            top: -9px;
+
+            transform:
+                translateX(-50%);
+
+            width: 3px;
+            height: 10px;
+
+            background: #222;
+
+            border-radius: 3px;
+        }
+
+
+        /* =========================================
+           LLAMA
+        ========================================= */
+
+        .llama {
+            position: absolute;
+
+            left: 50%;
+            top: -43px;
+
+            transform:
+                translateX(-50%);
+
+            width: 21px;
+            height: 34px;
+
+            background:
+                radial-gradient(
+                    ellipse at center bottom,
+                    #fffde0 0%,
+                    #fff09a 25%,
+                    #ffc42e 50%,
+                    #ff7b00 70%,
+                    transparent 72%
+                );
+
+            border-radius:
+                50% 50% 45% 45%;
+
+            opacity: 0;
+
+            filter: blur(0.4px);
+
+            box-shadow:
+                0 0 18px
+                rgba(255,170,40,0.9),
+
+                0 0 35px
+                rgba(255,130,20,0.5);
+
+            animation:
+                llamaMovimiento
+                0.18s
+                infinite
+                alternate;
+        }
+
+
+        .llama.encendida {
+            opacity: 1;
+        }
+
+
+        @keyframes llamaMovimiento {
+
+            0% {
+                transform:
+                    translateX(-50%)
+                    scale(1)
+                    rotate(-3deg);
+            }
+
+            50% {
+                transform:
+                    translateX(-50%)
+                    scale(1.08,0.95)
+                    rotate(3deg);
+            }
+
+            100% {
+                transform:
+                    translateX(-50%)
+                    scale(0.94,1.08)
+                    rotate(-2deg);
+            }
+        }
+
+
+        /* =========================================
+           APAGAR LLAMA
+        ========================================= */
+
+        .llama.apagando {
+            animation:
+                apagarLlama
+                1.2s
+                ease
+                forwards !important;
+        }
+
+
+        @keyframes apagarLlama {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    translateX(-50%)
+                    scale(1);
+
+                filter:
+                    brightness(1);
+            }
+
+            30% {
+                opacity: 0.9;
+
+                transform:
+                    translateX(-50%)
+                    scale(0.8,1.15)
+                    rotate(3deg);
+
+                filter:
+                    brightness(1.6);
+            }
+
+            55% {
+                opacity: 0.6;
+
+                transform:
+                    translateX(-50%)
+                    scale(0.5,0.8)
+                    translateY(-5px);
+            }
+
+            75% {
+                opacity: 0.25;
+
+                transform:
+                    translateX(-50%)
+                    scale(0.25)
+                    translateY(-12px);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translateX(-50%)
+                    scale(0.05)
+                    translateY(-20px);
+
+                filter:
+                    brightness(2);
+            }
+        }
+
+
+        /* =========================================
+           HUMO
+        ========================================= */
+
+        .humo {
+            position: absolute;
+
+            left: 50%;
+            top: -35px;
+
+            width: 8px;
+            height: 28px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                rgba(220,220,220,0.35);
+
+            border-radius: 50%;
+
+            filter:
+                blur(3px);
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .humo.subir {
+            animation:
+                subirHumo
+                2.5s
+                ease-out
+                forwards;
+        }
+
+
+        @keyframes subirHumo {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translate(-50%,5px)
+                    scale(.4);
+            }
+
+            20% {
+                opacity: .45;
+            }
+
+            50% {
+                opacity: .25;
+
+                transform:
+                    translate(-20%,-30px)
+                    scale(1.2);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translate(30%,-70px)
+                    scale(2);
+            }
+        }
+
+
+        /* =========================================
+           OSCURIDAD
+        ========================================= */
+
+        .oscuridad {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                rgba(0,0,0,1);
+
+            opacity: 1;
+
+            z-index: 10;
+
+            pointer-events: none;
+
+            transition:
+                opacity 2.2s ease;
+        }
+
+
+        .oscuridad.final {
+            opacity: 1 !important;
+
+            z-index: 30;
+
+            transition:
+                opacity 3.5s ease;
+        }
+
+
+        /* =========================================
+           MENSAJE INICIAL
+        ========================================= */
+
+        .mensaje {
+            position: absolute;
+
+            top: 12%;
+
+            z-index: 20;
+
+            width: 100%;
+
+            padding: 0 20px;
+
+            color:
+                rgba(255,255,255,0.80);
+
+            font-size: 20px;
+
+            letter-spacing: 2px;
+
+            text-align: center;
+
+            opacity: 1;
+
+            transition:
+                opacity 1s ease;
+        }
+
+
+        /* =========================================
+           BOTÓN
+        ========================================= */
+
+        .boton {
+            position: absolute;
+
+            left: 50%;
+            bottom: 8%;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 20;
+
+            padding:
+                14px 28px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.30);
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            color: white;
+
+            font-family:
+                Georgia, serif;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            backdrop-filter:
+                blur(5px);
+
+            transition:
+                opacity 1s ease,
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        .boton:hover {
+            background:
+                rgba(255,255,255,0.18);
+
+            transform:
+                translateX(-50%)
+                scale(1.05);
+        }
+
+
+        /* =========================================
+           DECORACIÓN FINAL
+        ========================================= */
+
+        .decoracion-final {
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 19;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity 2s ease,
+                visibility 2s ease;
+        }
+
+
+        .decoracion-final.mostrar {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* =========================================
+           REGALOS
+        ========================================= */
+
+        .regalo {
+            position: absolute;
+
+            font-size: 65px;
+
+            filter:
+                drop-shadow(
+                    0 0 12px
+                    rgba(255,210,100,0.25)
+                );
+
+            animation:
+                regaloFlotando
+                3s
+                ease-in-out
+                infinite;
+        }
+
+
+        .regalo-izq {
+            left: 12%;
+            bottom: 24%;
+
+            transform:
+                rotate(-8deg);
+        }
+
+
+        .regalo-der {
+            right: 12%;
+            bottom: 24%;
+
+            transform:
+                rotate(8deg);
+
+            animation-delay:
+                0.8s;
+        }
+
+
+        @keyframes regaloFlotando {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(-8deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-8px)
+                    rotate(-3deg);
+            }
+        }
+
+
+        /* =========================================
+           FELICITACIÓN
+        ========================================= */
+
+        .felicitacion {
+            position: absolute;
+
+            top: 12%;
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 100%;
+
+            text-align: center;
+
+            white-space: nowrap;
+
+            z-index: 23;
+
+            transition:
+                top 2s ease,
+                transform 2s ease;
+        }
+
+
+        .felicitacion.bajar {
+            top: 78%;
+
+            transform:
+                translateX(-50%)
+                scale(0.75);
+        }
+
+
+        .feliz {
+            font-size: 38px;
+
+            color:
+                #fff4d0;
+
+            letter-spacing: 1px;
+
+            text-shadow:
+                0 0 8px
+                rgba(255,220,130,0.5),
+
+                0 0 20px
+                rgba(255,190,80,0.25);
+        }
+
+
+        .nombre {
+            margin-top: 8px;
+
+            font-size: 52px;
+
+            font-weight: bold;
+
+            color:
+                #ffd76a;
+
+            text-shadow:
+                0 0 10px
+                rgba(255,215,106,0.6),
+
+                0 0 25px
+                rgba(255,190,70,0.4);
+        }
+
+
+        /* =========================================
+           LETRAS DE LA CANCIÓN
+        ========================================= */
+
+        .letra-cancion {
+            position: absolute;
+
+            top: 40%;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 90%;
+
+            text-align: center;
+
+            z-index: 25;
+        }
+
+
+        .frase-cancion {
+            position: absolute;
+
+            width: 100%;
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            color:
+                #fff4d0;
+
+            font-family:
+                Georgia, serif;
+
+            font-size: 32px;
+
+            text-shadow:
+                0 0 10px
+                rgba(255,215,100,0.7),
+
+                0 0 25px
+                rgba(255,180,70,0.3);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .frase-cancion.mostrar {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================
+           CONFETIS
+        ========================================= */
+
+        .confetis {
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 21;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            opacity: 0;
+
+            transition:
+                opacity 1s ease;
+        }
+
+
+        .confetis.mostrar {
+            opacity: 1;
+        }
+
+
+        .confeti {
+            position: absolute;
+
+            top: -30px;
+
+            width: 9px;
+            height: 16px;
+
+            border-radius: 2px;
+
+            animation:
+                caerConfeti
+                linear
+                forwards;
+        }
+
+
+        @keyframes caerConfeti {
+
+            0% {
+                transform:
+                    translateY(-40px)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+                opacity: 0.9;
+            }
+        }
+
+
+        /* =========================================
+           MENSAJE FINAL
+        ========================================= */
+
+        .mensaje-final {
+            position: absolute;
+
+            top: 18%;
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 75%;
+            max-width: 750px;
+
+            text-align: center;
+
+            z-index: 26;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            color:
+                #fff4d0;
+        }
+
+
+        .mensaje-final.mostrar {
+            opacity: 1;
+        }
+
+
+        .mensaje-titulo {
+            font-size: 30px;
+
+            color:
+                #ffd76a;
+
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 0 10px
+                rgba(255,215,106,0.6);
+        }
+
+
+        .linea-mensaje {
+            font-size: 21px;
+
+            line-height: 1.5;
+
+            color:
+                #fff4d0;
+
+            margin: 13px 0;
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            text-shadow:
+                0 0 10px
+                rgba(255,220,150,0.35);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .linea-mensaje.mostrar {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        .linea-mensaje.final {
+            margin-top: 25px;
+
+            font-size: 28px;
+
+            color:
+                #ffd76a;
+
+            text-shadow:
+                0 0 12px
+                rgba(255,215,100,0.7);
+        }
+
+
+        /* =========================================
+           📱 TELÉFONOS
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .pastel {
+                width: 300px;
+                height: 190px;
+
+                bottom: 20%;
+
+                transform:
+                    translateX(-50%)
+                    scale(0.78);
+
+                transform-origin:
+                    center bottom;
+            }
+
+
+            .vela {
+                bottom: 135px;
+
+                transform:
+                    translateX(-50%);
+            }
+
+
+            .luz-vela {
+                width: 360px;
+                height: 360px;
+            }
+
+
+            /* 🎶 Canción */
+
+            .letra-cancion {
+                top: 39%;
+
+                width: 94%;
+            }
+
+
+            .frase-cancion {
+                font-size: 21px;
+
+                line-height: 1.3;
+            }
+
+
+            /* 💛 Felicitación */
+
+            .felicitacion {
+                top: 10%;
+            }
+
+
+            .felicitacion.bajar {
+                top: 78%;
+
+                transform:
+                    translateX(-50%)
+                    scale(.65);
+            }
+
+
+            .feliz {
+                font-size: 28px;
+            }
+
+
+            .nombre {
+                font-size: 38px;
+            }
+
+
+            /* 🎁 Regalos */
+
+            .regalo {
+                font-size: 45px;
+            }
+
+
+            .regalo-izq {
+                left: 3%;
+                bottom: 20%;
+            }
+
+
+            .regalo-der {
+                right: 3%;
+                bottom: 20%;
+            }
+
+
+            /* 💌 Mensaje */
+
+            .mensaje-final {
+                top: 14%;
+
+                width: 88%;
+            }
+
+
+            .mensaje-titulo {
+                font-size: 24px;
+
+                margin-bottom: 18px;
+            }
+
+
+            .linea-mensaje {
+                font-size: 16px;
+
+                line-height: 1.4;
+
+                margin: 9px 0;
+            }
+
+
+            .linea-mensaje.final {
+                font-size: 21px;
+            }
+
+
+            /* 💬 Mensaje inicial */
+
+            .mensaje {
+                top: 10%;
+
+                padding: 0 20px;
+
+                font-size: 16px;
+
+                letter-spacing: 1px;
+            }
+
+
+            /* 🔘 Botón */
+
+            .boton {
+                bottom: 7%;
+
+                padding:
+                    12px 20px;
+
+                font-size: 15px;
+            }
+        }
+
+
+        /* =========================================
+           📱 TELÉFONOS MUY PEQUEÑOS
+        ========================================= */
+
+        @media (max-width: 380px) {
+
+            .pastel {
+                bottom: 20%;
+
+                transform:
+                    translateX(-50%)
+                    scale(.68);
+            }
+
+
+            .letra-cancion {
+                top: 38%;
+            }
+
+
+            .frase-cancion {
+                font-size: 18px;
+            }
+
+
+            .feliz {
+                font-size: 24px;
+            }
+
+
+            .nombre {
+                font-size: 32px;
+            }
+
+
+            .felicitacion.bajar {
+                top: 79%;
+
+                transform:
+                    translateX(-50%)
+                    scale(.58);
+            }
+
+
+            .mensaje-final {
+                top: 12%;
+            }
+
+
+            .linea-mensaje {
+                font-size: 14px;
+            }
+
+
+            .mensaje-titulo {
+                font-size: 21px;
+            }
+
+
+            .regalo {
+                font-size: 38px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         🎵 MÚSICA
+    ========================================= -->
+
+    <audio id="musica">
+        <source
+            src="soulprodmusic-happy-birthday-piano-508359.mp3"
+            type="audio/mpeg">
+    </audio>
+
+
+    <!-- =========================================
+         🌌 ESCENA
+    ========================================= -->
+
+    <div class="escena">
+
+
+        <!-- 💬 MENSAJE INICIAL -->
+
+        <div
+            class="mensaje"
+            id="mensaje">
+
+            Tengo una pequeña sorpresa para ti...
+
+        </div>
+
+
+        <!-- =========================================
+             🎁 DECORACIÓN FINAL
+        ========================================= -->
+
+        <div
+            class="decoracion-final"
+            id="decoracionFinal">
+
+
+            <!-- 🎁 REGALO IZQUIERDO -->
+
+            <div class="regalo regalo-izq">
+                🎁
+            </div>
+
+
+            <!-- 🎁 REGALO DERECHO -->
+
+            <div class="regalo regalo-der">
+                🎁
+            </div>
+
+
+            <!-- =====================================
+                 💛 FELICITACIÓN
+            ====================================== -->
+
+            <div
+                class="felicitacion"
+                id="felicitacion">
+
+                <div class="feliz">
+                    Feliz cumpleaños
+                </div>
+
+                <div class="nombre">
+                    Doménica 💛
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 🎶 CANCIÓN
+            ====================================== -->
+
+            <div
+                class="letra-cancion"
+                id="letraCancion">
+
+
+                <div
+                    class="frase-cancion"
+                    id="frase1">
+
+                    Feliz cumpleaños a ti 🎶
+
+                </div>
+
+
+                <div
+                    class="frase-cancion"
+                    id="frase2">
+
+                    Feliz cumpleaños a ti 🎶
+
+                </div>
+
+
+                <div
+                    class="frase-cancion"
+                    id="frase3">
+
+                    Te deseamos todos ✨
+
+                </div>
+
+
+                <div
+                    class="frase-cancion"
+                    id="frase4">
+
+                    Feliz cumpleaños, Doménica 🎂💛
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 💌 MENSAJE PARA ELLA
+            ====================================== -->
+
+            <div
+                class="mensaje-final"
+                id="mensajeFinal">
+
+
+                <div class="mensaje-titulo">
+
+                    💛 Para ti, Doménica 💛
+
+                </div>
+
+
+                <div
+                    class="linea-mensaje"
+                    id="linea1">
+
+                    Espero que hoy tengas un día muy bonito.
+
+                </div>
+
+
+                <div
+                    class="linea-mensaje"
+                    id="linea2">
+
+                    Que nunca te falten motivos para sonreír.
+
+                </div>
+
+
+                <div
+                    class="linea-mensaje"
+                    id="linea3">
+
+                    Que todos tus sueños poco a poco se hagan realidad.
+
+                </div>
+
+
+                <div
+                    class="linea-mensaje"
+                    id="linea4">
+
+                    Y que este nuevo año de vida esté lleno de momentos especiales.
+
+                </div>
+
+
+                <div
+                    class="linea-mensaje final"
+                    id="linea5">
+
+                    ✨ Feliz cumpleaños, Doménica ✨
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             🎉 CONFETIS
+        ========================================= -->
+
+        <div
+            class="confetis"
+            id="confetis">
+        </div>
+
+
+        <!-- =========================================
+             🟡 LUZ DE LA VELA
+        ========================================= -->
+
+        <div
+            class="luz-vela"
+            id="luz">
+        </div>
+
+
+        <!-- =========================================
+             🎂 PASTEL
+        ========================================= -->
+
+        <div class="pastel">
+
+
+            <!-- CAPA SUPERIOR -->
+
+            <div class="capa-superior">
+
+
+                <div class="crema crema1"></div>
+
+                <div class="crema crema2"></div>
+
+                <div class="crema crema3"></div>
+
+
+                <!-- 🍓 FRESAS -->
+
+                <div class="fresa fresa1">
+                    🍓
+                </div>
+
+                <div class="fresa fresa2">
+                    🍓
+                </div>
+
+                <div class="fresa fresa3">
+                    🍓
+                </div>
+
+            </div>
+
+
+            <!-- RELLENO -->
+
+            <div class="relleno"></div>
+
+
+            <!-- CAPA INFERIOR -->
+
+            <div class="capa-inferior">
+
+                <div class="crema crema4"></div>
+
+                <div class="crema crema5"></div>
+
+                <div class="crema crema6"></div>
+
+            </div>
+
+
+            <!-- BASE -->
+
+            <div class="base-pastel"></div>
+
+
+            <!-- =====================================
+                 🕯️ VELA
+            ====================================== -->
+
+            <div class="vela">
+
+
+                <div class="mecha"></div>
+
+
+                <!-- 🔥 LLAMA -->
+
+                <div
+                    class="llama"
+                    id="llama">
+                </div>
+
+
+                <!-- 💨 HUMO -->
+
+                <div
+                    class="humo"
+                    id="humo">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             🌑 OSCURIDAD
+        ========================================= -->
+
+        <div
+            class="oscuridad"
+            id="oscuridad">
+        </div>
+
+
+        <!-- =========================================
+             🔘 BOTÓN
+        ========================================= -->
+
+        <button
+            class="boton"
+            id="boton">
+
+            🕯️ Encender la vela
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           ELEMENTOS
+        ========================================= */
+
+        const boton =
+            document.getElementById("boton");
+
+        const musica =
+            document.getElementById("musica");
+
+        const llama =
+            document.getElementById("llama");
+
+        const humo =
+            document.getElementById("humo");
+
+        const luz =
+            document.getElementById("luz");
+
+        const oscuridad =
+            document.getElementById("oscuridad");
+
+        const mensaje =
+            document.getElementById("mensaje");
+
+        const decoracionFinal =
+            document.getElementById("decoracionFinal");
+
+        const felicitacion =
+            document.getElementById("felicitacion");
+
+        const frase1 =
+            document.getElementById("frase1");
+
+        const frase2 =
+            document.getElementById("frase2");
+
+        const frase3 =
+            document.getElementById("frase3");
+
+        const frase4 =
+            document.getElementById("frase4");
+
+        const confetis =
+            document.getElementById("confetis");
+
+        const mensajeFinal =
+            document.getElementById("mensajeFinal");
+
+        const linea1 =
+            document.getElementById("linea1");
+
+        const linea2 =
+            document.getElementById("linea2");
+
+        const linea3 =
+            document.getElementById("linea3");
+
+        const linea4 =
+            document.getElementById("linea4");
+
+        const linea5 =
+            document.getElementById("linea5");
+
+
+        let iniciado = false;
+
+
+        /* =========================================
+           🎉 CREAR CONFETIS
+        ========================================= */
+
+        function crearConfetis() {
+
+            const colores = [
+
+                "#ffd76a",
+                "#ff8fab",
+                "#8fd3ff",
+                "#b8f28b",
+                "#d8a7ff",
+                "#ffffff"
+
+            ];
+
+
+            for (
+                let i = 0;
+                i < 80;
+                i++
+            ) {
+
+                const confeti =
+                    document.createElement("div");
+
+
+                confeti.classList.add(
+                    "confeti"
+                );
+
+
+                /* POSICIÓN */
+
+                confeti.style.left =
+                    Math.random() * 100 + "%";
+
+
+                /* TAMAÑO */
+
+                confeti.style.width =
+                    (6 + Math.random() * 7) + "px";
+
+                confeti.style.height =
+                    (10 + Math.random() * 10) + "px";
+
+
+                /* COLOR */
+
+                confeti.style.background =
+                    colores[
+                        Math.floor(
+                            Math.random() *
+                            colores.length
+                        )
+                    ];
+
+
+                /* VELOCIDAD */
+
+                confeti.style.animationDuration =
+                    (4 + Math.random() * 5) + "s";
+
+
+                /* RETRASO */
+
+                confeti.style.animationDelay =
+                    Math.random() * 3 + "s";
+
+
+                confetis.appendChild(
+                    confeti
+                );
+            }
+        }
+
+
+        /* =========================================
+           🕯️ BOTÓN PRINCIPAL
+        ========================================= */
+
+        boton.addEventListener(
+            "click",
+            function () {
+
+
+                /* EVITAR DOBLE CLIC */
+
+                if (iniciado) {
+                    return;
+                }
+
+                iniciado = true;
+
+
+                /* =================================
+                   🔥 ENCENDER VELA
+                ================================= */
+
+                llama.classList.remove(
+                    "apagando"
+                );
+
+                llama.classList.add(
+                    "encendida"
+                );
+
+
+                /* =================================
+                   🟡 ENCENDER LUZ
+                ================================= */
+
+                luz.style.opacity = "1";
+
+
+                /* =================================
+                   🌑 QUITAR OSCURIDAD
+                ================================= */
+
+                oscuridad.style.opacity =
+                    "0.18";
+
+
+                /* =================================
+                   🎁 MOSTRAR DECORACIÓN
+                ================================= */
+
+                decoracionFinal.classList.add(
+                    "mostrar"
+                );
+
+
+                /* =================================
+                   🎵 MÚSICA
+                ================================= */
+
+                musica.currentTime = 0;
+
+                musica.play().catch(
+                    function (error) {
+
+                        console.log(
+                            "No se pudo reproducir el audio:",
+                            error
+                        );
+
+                    }
+                );
+
+
+                /* =================================
+                   ✨ OCULTAR MENSAJE
+                ================================= */
+
+                mensaje.style.opacity =
+                    "0";
+
+
+                /* =================================
+                   🔘 OCULTAR BOTÓN
+                ================================= */
+
+                boton.style.opacity =
+                    "0";
+
+
+                setTimeout(
+                    function () {
+
+                        boton.style.display =
+                            "none";
+
+                    },
+                    1000
+                );
+
+
+                /* =================================
+                   🎉 3 SEGUNDOS
+                   CONFETIS + SALUDO
+                ================================= */
+
+                setTimeout(
+                    function () {
+
+                        felicitacion.classList.add(
+                            "bajar"
+                        );
+
+
+                        confetis.classList.add(
+                            "mostrar"
+                        );
+
+
+                        crearConfetis();
+
+                    },
+                    3000
+                );
+
+
+                /* =================================
+                   🎶 5 SEGUNDOS
+                ================================= */
+
+                setTimeout(
+                    function () {
+
+                        frase1.classList.add(
+                            "mostrar"
+                        );
+
+                    },
+                    5000
+                );
+
+
+                /* =================================
+                   🎶 8.5 SEGUNDOS
+                ================================= */
+
+                setTimeout(
+                    function () {
+
+
+                        frase1.classList.remove(
+                            "mostrar"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                frase2.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            700
+                        );
+
+                    },
+                    8500
+                );
+
+
+                /* =================================
+                   ✨ 12 SEGUNDOS
+                ================================= */
+
+                setTimeout(
+                    function () {
+
+
+                        frase2.classList.remove(
+                            "mostrar"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                frase3.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            700
+                        );
+
+                    },
+                    12000
+                );
+
+
+                /* =================================
+                   🎂 15.5 SEGUNDOS
+                ================================= */
+
+                setTimeout(
+                    function () {
+
+
+                        frase3.classList.remove(
+                            "mostrar"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                frase4.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            700
+                        );
+
+                    },
+                    15500
+                );
+
+
+                /* =================================
+                   💌 20 SEGUNDOS
+                   MENSAJE FINAL
+                ================================= */
+
+                setTimeout(
+                    function () {
+
+
+                        /* QUITAR FRASE */
+
+                        frase4.classList.remove(
+                            "mostrar"
+                        );
+
+
+                        /* MOSTRAR MENSAJE */
+
+                        mensajeFinal.classList.add(
+                            "mostrar"
+                        );
+
+
+                        /* LÍNEA 1 */
+
+                        setTimeout(
+                            function () {
+
+                                linea1.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            800
+                        );
+
+
+                        /* LÍNEA 2 */
+
+                        setTimeout(
+                            function () {
+
+                                linea2.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            2300
+                        );
+
+
+                        /* LÍNEA 3 */
+
+                        setTimeout(
+                            function () {
+
+                                linea3.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            3800
+                        );
+
+
+                        /* LÍNEA 4 */
+
+                        setTimeout(
+                            function () {
+
+                                linea4.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            5300
+                        );
+
+
+                        /* LÍNEA FINAL */
+
+                        setTimeout(
+                            function () {
+
+                                linea5.classList.add(
+                                    "mostrar"
+                                );
+
+                            },
+                            7000
+                        );
+
+                    },
+                    20000
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           🎵 CUANDO TERMINA LA CANCIÓN
+        ========================================= */
+
+        musica.addEventListener(
+            "ended",
+            function () {
+
+
+                console.log(
+                    "🎵 La canción terminó"
+                );
+
+
+                /* ==============================
+                   🔥 1. APAGAR LLAMA
+                ============================== */
+
+                llama.classList.remove(
+                    "encendida"
+                );
+
+                llama.classList.add(
+                    "apagando"
+                );
+
+
+                /* ==============================
+                   💨 2. HUMO
+                ============================== */
+
+                setTimeout(
+                    function () {
+
+                        humo.classList.add(
+                            "subir"
+                        );
+
+                    },
+                    700
+                );
+
+
+                /* ==============================
+                   🕯️ 3. APAGAR LUZ
+                ============================== */
+
+                setTimeout(
+                    function () {
+
+                        luz.style.opacity =
+                            "0";
+
+                    },
+                    900
+                );
+
+
+                /* ==============================
+                   🎁 4. OCULTAR DECORACIÓN
+                ============================== */
+
+                setTimeout(
+                    function () {
+
+                        decoracionFinal.classList.remove(
+                            "mostrar"
+                        );
+
+                        mensajeFinal.classList.remove(
+                            "mostrar"
+                        );
+
+                        confetis.classList.remove(
+                            "mostrar"
+                        );
+
+                    },
+                    1800
+                );
+
+
+                /* ==============================
+                   🌑 5. TODO SE OSCURECE
+                ============================== */
+
+                setTimeout(
+                    function () {
+
+                        oscuridad.classList.add(
+                            "final"
+                        );
+
+                    },
+                    2300
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
